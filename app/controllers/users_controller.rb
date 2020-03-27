@@ -7,6 +7,11 @@ class UsersController < ApplicationController
     erb :login
   end
   
+  # the purpose of this route is to receive the login form
+  # find the user, and log the user in (create a sesson)
+  post '/login' do
+    binding.pry
+  end
   # what routes do I need for signup?
   get '/signup' do
     erb :signup
