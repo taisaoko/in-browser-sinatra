@@ -1,8 +1,8 @@
 # here is where I will create some seed data to work with and test associations
 
 # Create 2 users
-howard = User.create(name: "Howard", email: "howard@howard.com", password "password")
-sherry = User.create(name: "Sherry", email: "sherry@sherry.com", password "password")
+howard = User.create(name: "Howard", email: "howard@howard.com", password: "password")
+sherry = User.create(name: "Sherry", email: "sherry@sherry.com", password: "password")
 
 # Create some journal entries
 
