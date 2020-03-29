@@ -22,7 +22,7 @@ class ApplicationController < Sinatra::Base
     end
     
     def current_user
-      # memoization by an instance 
+      # memoization by an instant variable 
       @current_user ||= User.find_by(id: session[:user_id])
     end
   end
