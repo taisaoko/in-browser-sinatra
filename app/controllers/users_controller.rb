@@ -57,7 +57,7 @@ class UsersController < ApplicationController
   # user SHOW route
   get '/users/:id' do
     # what do I need to do first?
-    # raise params.inspect
+    # raise params.inspect (show error, the params in hash form {"id"= => "3")
     @user = User.find_by(id: params[:id])
     erb :'/users/show'
   end
