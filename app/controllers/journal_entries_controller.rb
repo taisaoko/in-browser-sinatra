@@ -6,16 +6,17 @@ class JournalEntriesController < ApplicationController
   end
   # post journal_entries to create a new journal entry
   post '/journal_entries' do
-    raise params.inspect
+    # raise params.inspect
     # I want to create a new journal entry and save it to the debugger
     # I also only want to create a journal entry if a user is logged in
-    if !logged_in
+    if !logged_in?
       redirect '/'
     end
     # I only want to save the entry if it has some content
     if params[:content] != ""
       # create a new entry
       @journal_entry = JournalEntry.create(content: params[:content], user_id: current_user.id)
+      redirect '/journal_entries/#{@journal_entry.id}'
     else
       redirect '/journal_entries/new'
     end
