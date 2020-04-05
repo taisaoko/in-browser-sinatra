@@ -4,6 +4,7 @@ class JournalEntriesController < ApplicationController
   get '/journal_entries/new' do
     erb :'/journal_entries/new'
   end
+  
   # post journal_entries to create a new journal entry
   post '/journal_entries' do
     # raise params.inspect
@@ -21,10 +22,17 @@ class JournalEntriesController < ApplicationController
       redirect '/journal_entries/new'
     end
   end
+  
   # show route for a journal entry
-    get '/journal_entries/:id' do
-      @journal_entry = JournalEntry.find(params[:id])
-      erb :'>journal_entries/show'
-    end
+  get '/journal_entries/:id' do
+    @journal_entry = JournalEntry.find(params[:id])
+    erb :'>journal_entries/show'
+  end
+  
+  # This route should send us to journal_entries/edit.erb, which will render an edit form
+  get '/journal_entries/:id/edit' do
+    erb :'/journal_entries/edit'
+  end
   # index route for all journal entries
+  
 end
