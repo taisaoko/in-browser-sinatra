@@ -1,5 +1,11 @@
 class JournalEntriesController < ApplicationController
   
+  # index route for all journal entries
+  get '/journal_entries' do
+    @journal_entries = JournalEntry.all
+    erb :'journal_entries/index'
+  end
+  
   # get journal_entries/new to render a form to create new entry
   get '/journal_entries/new' do
     erb :'/journal_entries/new'
@@ -26,7 +32,7 @@ class JournalEntriesController < ApplicationController
   # show route for a journal entry
   get '/journal_entries/:id' do
     set_journal_entry
-    erb :'>journal_entries/show'
+    erb :'journal_entries/show'
   end
   
   # *** MAJOR PROBLEMS!!! ***
@@ -39,7 +45,7 @@ class JournalEntriesController < ApplicationController
       if @journal_entry.user == current_user
         erb :'/journal_entries/edit'
       else
-        redirect "user/#{current_user.id}"
+        redirect "users/#{current_user.id}"
       end
     else
       redirect'/'
@@ -57,19 +63,17 @@ class JournalEntriesController < ApplicationController
         # 3.redirect to show page
         redirect "/journal_entries/#{@journal_entry.id}"
         else
-        redirect "user/#{current_user.id}"
+        redirect "users/#{current_user.id}"
       end
     else
       redirect'/'
     end
   end
   
-  # index route for all journal entries
-  
   private # only call inside of this class
   
   def set_journal_entry
     # this is a helper method
-    @journal_entry = JournalEntry.find(param[:id])
+    @journal_entry = JournalEntry.find(params[:id])
   end
 end

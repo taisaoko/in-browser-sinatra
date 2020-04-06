@@ -2,6 +2,7 @@ SHOW PAGE FOR A JOURNAL
 
 <p><%= @journal_entry.content %></p>
 
-Edit Link
-<a href ="/journal_entries/<%= @journal_entry.id %>/edit">Edit Entry</a>
-Delete Link
+<% if current_user == @journal_entry.user %>
+  <a href ="/journal_entries/<%= @journal_entry.id %>/edit">Edit Entry</a>
+  Delete Link
+<% end %>
