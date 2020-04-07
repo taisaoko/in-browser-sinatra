@@ -57,7 +57,7 @@ class JournalEntriesController < ApplicationController
     # 1.find the journal entry
     set_journal_entry
     if logged_in?
-      if authorized_to_edit?(@journal_entry)
+      if authorized_to_edit?(@journal_entry)&& params[:content] != ""
       # 2.update the journal entry
         @journal_entry.update(content: params[:content])
         # 3.redirect to show page
