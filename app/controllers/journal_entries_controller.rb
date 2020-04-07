@@ -22,9 +22,11 @@ class JournalEntriesController < ApplicationController
     # I only want to save the entry if it has some content
     if params[:content] != ""
       # create a new entry
+      flash[:message] = "Journal entry sucessfully created."
       @journal_entry = JournalEntry.create(content: params[:content], user_id: current_user.id)
       redirect '/journal_entries/#{@journal_entry.id}'
     else
+      flash[:message] = "Something went wrong." # should not be before a render (erb) only before a redirect since flash messages only last 1 HTTP request.  
       redirect '/journal_entries/new'
     end
   end
