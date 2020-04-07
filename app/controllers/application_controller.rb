@@ -29,6 +29,11 @@ class ApplicationController < Sinatra::Base
       # memoization by an instant variable 
       @current_user ||= User.find_by(id: session[:user_id])
     end
+    
+    def authorized_to_edit?(journal_entry)
+      journal_entry.user == current_user
+    end
+    
   end
 
 end
