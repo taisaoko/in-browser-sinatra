@@ -70,6 +70,16 @@ class JournalEntriesController < ApplicationController
     end
   end
   
+  delete '/journal_entries/:id' do
+    set_journal_entry
+    if authorized_to_edit?(@journal_entry)
+      @journal_entry.destroy # destroy runs callbacks on the models while delete doesn't
+      redirect '/journal_entries' # separation of concerns, usually render erb in get requests.
+    else
+      redirect '/journal_entries'
+    end
+  end
+  
   private # only call inside of this class
   
   def set_journal_entry
